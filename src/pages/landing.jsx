@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 function Landing() {
+  let navigate = useNavigate();
+  let handleNavigate = () => {
+    navigate(`/AddListing`);
+  };
   return (
     <main className="w-full min-h-screen">
-      <div className="px-[162px] py-[38px] border-b border-solid border-[#dbdbdb]">
-        <img src="/redberry logo.png" alt="logo" />
-      </div>
       <div className="w-full px-[162px]">
         <nav className="flex items-center justify-between mt-[77px]">
           <section className="flex items-center gap-6 p-[6px] rounded-[10px] border border-solid border-[#dbdbdb]">
@@ -49,7 +52,10 @@ function Landing() {
             </div>
           </section>
           <section className="flex items-center gap-8">
-            <button className="flex items-center gap-[2px] px-4 py-[12.5px] rounded-[10px] bg-[#f93b1d]">
+            <button
+              onClick={handleNavigate}
+              className="flex items-center gap-[2px] px-4 py-[12.5px] rounded-[10px] bg-[#f93b1d]"
+            >
               <img src="/ic-round-plus.png" alt="plus" />
               <span className="w-[174px] text-base text-[#fff] font-[600] leading-[19px] ">
                 ლისტინგის დამატება
