@@ -33,8 +33,8 @@ function Landing() {
     <main className="w-full min-h-screen">
       <div className="w-full px-[162px]">
         <nav className="flex items-center justify-between mt-[77px]">
-          <section className="flex items-center gap-6 p-[6px] rounded-[10px] border border-solid border-[#dbdbdb]">
-            <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px]">
+          <section className="w-[785px] flex items-center justify-between p-[6px] rounded-[10px] border border-solid border-[#dbdbdb]">
+            <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px] relative">
               <span className="text-base text-[#021526] font-[600] leading-[19px]">
                 რეგიონი
               </span>
@@ -43,17 +43,32 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
-              <section>
-                <h1>რეგიონის მიხედვით</h1>
-                {useRegions.map((e) => {
-                  return (
-                    <div>
-                      <input type="checkbox" id={e.name} />
-                      <label htmlFor={e.name}>{e.name}</label>
-                    </div>
-                  );
-                })}
-                <button>არჩევა</button>
+              <section className="w-[731px] absolute left-[-6px] bottom-[-16px] transform translate-y-full p-6 flex flex-col gap-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region">
+                <h1 className="text-base text-[##021526] font-[600] leading-[19px]">
+                  რეგიონის მიხედვით
+                </h1>
+                <div className="max-h-[140px] flex flex-col grid grid-cols-3 gap-y-[17.5px] gap-x-[50px]">
+                  {useRegions.map((e) => {
+                    return (
+                      <div key={e.id} className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          id={e.name}
+                          className="w-5 h-5 rounded-[2px] border border-solid border-[#dbdbdb] checked:bg-[#45a849]"
+                        />
+                        <label
+                          htmlFor={e.name}
+                          className="text-sm text-[#021526] font-normal leading-[17px]"
+                        >
+                          {e.name}
+                        </label>
+                      </div>
+                    );
+                  })}
+                </div>
+                <button className="w-[77px] h-[33px] flex items-center justify-center self-end mt-2 text-sm text-[#fff] font-[600] tracking-normal rounded-[8px] bg-[#f93b1d]">
+                  არჩევა
+                </button>
               </section>
             </div>
             <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px]">
