@@ -1,10 +1,17 @@
 import "./App.css";
 import axios from "axios";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./pages/landing";
 
 function App() {
-  return <></>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
