@@ -1,10 +1,34 @@
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 function Landing() {
   let navigate = useNavigate();
   let handleNavigate = () => {
     navigate(`/AddListing`);
   };
+
+  const [useRegions, setRegions] = useState([]);
+  const apiUrl =
+    "https://api.real-estate-manager.redberryinternship.ge/api/regions";
+  const token = "9d025c29-ad91-40fa-bad6-c361841343ce"; // Replace with your actual token
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the headers
+          },
+        });
+        setRegions(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [apiUrl, token]);
   return (
     <main className="w-full min-h-screen">
       <div className="w-full px-[162px]">
@@ -19,6 +43,18 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
+              <section>
+                <h1>რეგიონის მიხედვით</h1>
+                {useRegions.map((e) => {
+                  return (
+                    <div>
+                      <input type="checkbox" id={e.name} />
+                      <label htmlFor={e.name}>{e.name}</label>
+                    </div>
+                  );
+                })}
+                <button>არჩევა</button>
+              </section>
             </div>
             <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px]">
               <span className="text-base text-[#021526] font-[600] leading-[19px]">
