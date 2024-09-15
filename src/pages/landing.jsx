@@ -71,7 +71,7 @@ function Landing() {
                 </button>
               </section>
             </div>
-            <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px]">
+            <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px] relative">
               <span className="text-base text-[#021526] font-[600] leading-[19px]">
                 საფასო კატეგორია
               </span>
@@ -80,37 +80,75 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
-              <section>
-                <h1>ფასის მიხედვით</h1>
-                <div>
-                  <div>
-                    <input type="text" placeholder="დან" />
-                    <span>₾</span>
+              <section className="w-[382px] absolute left-[-2px] bottom-[-16px] transform translate-y-full flex flex-col gap-6 p-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region ">
+                <h1 className="text-base text-[#021526] font-[600] leading-[19px]">
+                  ფასის მიხედვით
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="h-[42px] flex items-center justify-between gap-2 p-[10px] rounded-[6px] border border-solid border-[#808a93]">
+                    <input
+                      type="text"
+                      placeholder="დან"
+                      className="outline-none w-[120px] placeholder:text-sm placeholder:text-placeholder placeholder:leading-[17px] placeholder:font-[500]  text-sm text-[#021526] font-[500] leading-[17px]"
+                    />
+                    <span className="text-xs text-[#2d3648] font-normal leading-[14px] mt-[2px]">
+                      ₾
+                    </span>
                   </div>
-                  <div>
-                    <input type="text" placeholder="მდე" />
-                    <span>₾</span>
+                  <div className="h-[42px] flex items-center justify-between gap-2 p-[10px] rounded-[6px] border border-solid border-[#808a93]">
+                    <input
+                      type="text"
+                      placeholder="მდე"
+                      className="outline-none w-[120px] placeholder:text-sm placeholder:text-placeholder placeholder:leading-[17px] placeholder:font-[500] text-sm text-[#021526] font-[500] leading-[17px]"
+                    />
+                    <span className="text-xs text-[#2d3648] font-normal leading-[14px] mt-[2px]">
+                      ₾
+                    </span>
                   </div>
                 </div>
-                <div>
-                  <div>
-                    <h2>მინ. ფასი</h2>
-                    <div>
-                      <span>50,000 ₾</span>
-                      <span>100,000 ₾</span>
-                      <span>150,000 ₾</span>
-                      <span>200,000 ₾</span>
-                      <span>300,000 ₾</span>
+                <div className="flex justify-between pr-[82px]">
+                  <div className="flex flex-col gap-4">
+                    <h2 className="text-sm text-[#021526] font-[600] leading-[17px]">
+                      მინ. ფასი
+                    </h2>
+                    <div className="flex flex-col gap-2">
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        50,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        100,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        150,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        200,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        300,000 ₾
+                      </span>
                     </div>
                   </div>
-                  <div>
-                    <h2>მაქს. ფასი</h2>
-                    <div>
-                      <span>50,000 ₾</span>
-                      <span>100,000 ₾</span>
-                      <span>150,000 ₾</span>
-                      <span>200,000 ₾</span>
-                      <span>300,000 ₾</span>
+                  <div className="flex flex-col gap-4">
+                    <h2 className="text-sm text-[#021526] font-[600] leading-[17px]">
+                      მაქს. ფასი
+                    </h2>
+                    <div className="flex flex-col gap-2">
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        50,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        100,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        150,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        200,000 ₾
+                      </span>
+                      <span className="text-sm text-[#2d3648] font-normal leading-[17px]">
+                        300,000 ₾
+                      </span>
                     </div>
                   </div>
                 </div>
