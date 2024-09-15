@@ -8,6 +8,7 @@ export default {
     },
     colors: {
       placeholder: "rgba(2, 21, 38, 0.4)",
+      m: "rgba(2, 21, 38, 0.7)",
     },
   },
   plugins: [],

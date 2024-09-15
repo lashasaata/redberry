@@ -80,7 +80,7 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
-              <section className="w-[382px] absolute left-[-2px] bottom-[-16px] transform translate-y-full flex flex-col gap-6 p-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region ">
+              <section className="hidden w-[382px] absolute left-[-2px] bottom-[-16px] transform translate-y-full flex flex-col gap-6 p-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region ">
                 <h1 className="text-base text-[#021526] font-[600] leading-[19px]">
                   ფასის მიხედვით
                 </h1>
@@ -157,7 +157,7 @@ function Landing() {
                 </button>
               </section>
             </div>
-            <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px]">
+            <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px] relative">
               <span className="text-base text-[#021526] font-[600] leading-[19px]">
                 ფართობი
               </span>
@@ -166,6 +166,161 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
+              <section className="w-[382px] absolute left-[-2px] bottom-[-16px] transform translate-y-full flex flex-col gap-6 p-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region ">
+                <h1 className="text-base text-[#021526] font-[600] leading-[19px]">
+                  ფართობის მიხედვით
+                </h1>
+                <div className="flex items-center justify-between">
+                  <div className="h-[42px] flex items-center justify-between gap-2 p-[10px] rounded-[6px] border border-solid border-[#808a93]">
+                    <input
+                      type="text"
+                      placeholder="დან"
+                      className="outline-none w-[110px] placeholder:text-sm placeholder:text-placeholder placeholder:leading-[17px] placeholder:font-[500]  text-sm text-[#021526] font-[500] leading-[17px]"
+                    />
+                    <span className="flex gap-[1px] text-base text-m font-normal leading-[14px] mt-[2px]">
+                      მ
+                      <span className="text-[10px] text-m font-normal leading-[12px]">
+                        2
+                      </span>
+                    </span>
+                  </div>
+                  <div className="h-[42px] flex items-center justify-between gap-2 p-[10px] rounded-[6px] border border-solid border-[#808a93] mr-2">
+                    <input
+                      type="text"
+                      placeholder="მდე"
+                      className="outline-none w-[110px] placeholder:text-sm placeholder:text-placeholder placeholder:leading-[17px] placeholder:font-[500] text-sm text-[#021526] font-[500] leading-[17px]"
+                    />
+                    <span className="flex gap-[1px] text-base text-m font-normal leading-[14px] mt-[2px]">
+                      მ
+                      <span className="text-[10px] text-m font-normal leading-[12px]">
+                        2
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div className="flex justify-between pr-[82px]">
+                  <div className="flex flex-col gap-4">
+                    <h2 className=" flex items-center gap-2 text-sm text-[#021526] font-[600] leading-[17px]">
+                      მინ.{" "}
+                      <span className="flex gap-[1px] text-sm text-[#021526] font-[600] leading-[17px]">
+                        მ
+                        <span className="text-[7px] text-[#021526] font-[500] leading-[8px]">
+                          2
+                        </span>
+                      </span>
+                    </h2>
+                    <div className="flex flex-col gap-2">
+                      {" "}
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        50{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        100{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        150{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        200{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        300{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <h2 className=" flex items-center gap-2 text-sm text-[#021526] font-[600] leading-[17px]">
+                      მაქს.{" "}
+                      <span className="flex gap-[1px] text-sm text-[#021526] font-[600] leading-[17px]">
+                        მ
+                        <span className="text-[7px] text-[#021526] font-[500] leading-[8px]">
+                          2
+                        </span>
+                      </span>
+                    </h2>
+                    <div className="flex flex-col gap-2">
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        50{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        100{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        150{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        200{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                      <h2 className="flex items-center gap-1 text-sm text-[#2d3648] font-normal leading-[17px]">
+                        300{" "}
+                        <span className="flex gap-[1px] text-base text-m font-[600] leading-[19px]">
+                          მ
+                          <span className="text-[10px] text-m font-[500] leading-[12px]">
+                            2
+                          </span>
+                        </span>
+                      </h2>
+                    </div>
+                  </div>
+                </div>
+                <button className="w-[77px] h-[33px] flex items-center justify-center self-end mt-2 text-sm text-[#fff] font-[600] tracking-normal rounded-[8px] bg-[#f93b1d]">
+                  არჩევა
+                </button>
+              </section>
             </div>
             <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px]">
               <span className="text-base text-[#021526] font-[600] leading-[19px]">
