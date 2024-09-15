@@ -43,7 +43,7 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
-              <section className="w-[731px] absolute left-[-6px] bottom-[-16px] transform translate-y-full p-6 flex flex-col gap-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region">
+              <section className="hidden w-[731px] absolute left-[-6px] bottom-[-16px] transform translate-y-full p-6 flex flex-col gap-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region">
                 <h1 className="text-base text-[##021526] font-[600] leading-[19px]">
                   რეგიონის მიხედვით
                 </h1>
@@ -80,6 +80,44 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
+              <section>
+                <h1>ფასის მიხედვით</h1>
+                <div>
+                  <div>
+                    <input type="text" placeholder="დან" />
+                    <span>₾</span>
+                  </div>
+                  <div>
+                    <input type="text" placeholder="მდე" />
+                    <span>₾</span>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <h2>მინ. ფასი</h2>
+                    <div>
+                      <span>50,000 ₾</span>
+                      <span>100,000 ₾</span>
+                      <span>150,000 ₾</span>
+                      <span>200,000 ₾</span>
+                      <span>300,000 ₾</span>
+                    </div>
+                  </div>
+                  <div>
+                    <h2>მაქს. ფასი</h2>
+                    <div>
+                      <span>50,000 ₾</span>
+                      <span>100,000 ₾</span>
+                      <span>150,000 ₾</span>
+                      <span>200,000 ₾</span>
+                      <span>300,000 ₾</span>
+                    </div>
+                  </div>
+                </div>
+                <button className="w-[77px] h-[33px] flex items-center justify-center self-end mt-2 text-sm text-[#fff] font-[600] tracking-normal rounded-[8px] bg-[#f93b1d]">
+                  არჩევა
+                </button>
+              </section>
             </div>
             <div className="px-[14px] py-2 flex items-center gap-1 rounded-[6px]">
               <span className="text-base text-[#021526] font-[600] leading-[19px]">
