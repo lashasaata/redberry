@@ -331,15 +331,15 @@ function Landing() {
                 src="/icon-arrow-down.svg"
                 alt="arrow-down"
               />
-              <section className="w-[282px] absolute left-[0px] bottom-[-16px] transform translate-y-full flex flex-col gap-6 p-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region ">
+              <section className="hidden w-[282px] absolute left-[0px] bottom-[-16px] transform translate-y-full flex flex-col gap-6 p-6 rounded-[10px] border border-solid border-[#dbdbdb] shadow-region ">
                 <h1 className="text-base text-[#021526] font-[600] leading-[19px]">
                   საძინებლების რაოდენობა
                 </h1>
-                <div className="w-[42px] h-[42px] p-[10px] pl-[15px] pt-[9px] rounded-[6px] border border-solid border-[#808a93]">
+                <div className="w-[42px] h-[42px] p-[10px] pl-4 pt-2 rounded-[6px] border border-solid border-[#808a93]">
                   <input
                     type="text"
                     placeholder="2"
-                    className="outline-none w-[21px] h-[17px]  placeholder:text-sm placeholder:text-placeholder placeholder:leading-[17px]"
+                    className="outline-none w-[21px] h-[17px]  placeholder:text-sm placeholder:text-placeholder placeholder:leading-[17px] text-sm text-[#021526] font-[500] leading-[17px]"
                   />
                 </div>
                 <button className="w-[77px] h-[33px] flex items-center justify-center self-end mt-2 text-sm text-[#fff] font-[600] tracking-normal rounded-[8px] bg-[#f93b1d]">
