@@ -33,9 +33,9 @@ function Listing() {
             Authorization: `Bearer ${token}`, // Include the token in the headers
           },
         });
-        setRegions(responseA.data);
+        setAgents(responseA.data);
         console.log(responseA.data);
-        setRegions(responseC.data);
+        setCities(responseC.data);
         console.log(responseC.data);
         setRegions(responseR.data);
         console.log(responseR.data);
@@ -47,6 +47,85 @@ function Listing() {
     fetchData();
   }, [apiUrl, token]);
 
+  const [listings, setListings] = useState({
+    region: false,
+    cities: false,
+    agent: false,
+  });
+
+  const openList = (e) => {
+    const id = e.target.childNodes[0].id;
+    setListings({
+      ...{
+        region: false,
+        cities: false,
+        agent: false,
+      },
+      [id]: !listings[id],
+    });
+  };
+  console.log(listings);
+
+  const [newList, setNewList] = useState({
+    price: 0,
+    zip_code: 0,
+    description: "",
+    area: 0,
+    city_id: 0,
+    address: "",
+    agent_id: 0,
+    bedrooms: 0,
+    is_rental: 0,
+    image: "",
+    created_at: "",
+    id: 0,
+  });
+
+  const [regionId, setRegionId] = useState(0);
+  const handleRegion = (e) => {
+    const id = e.target.childNodes[0].id;
+    setRegionId(id);
+    setListings({
+      region: false,
+      cities: false,
+      agent: false,
+    });
+  };
+  const handleCities = (e) => {
+    const id = e.target.childNodes[0].id;
+    setNewList({
+      ...newList,
+      city_id: id,
+    });
+    setListings({
+      region: false,
+      cities: false,
+      agent: false,
+    });
+  };
+  const handleAgents = (e) => {
+    const id = e.target.childNodes[0].id;
+    setNewList({
+      ...newList,
+      agent_id_id: id,
+    });
+    setListings({
+      region: false,
+      cities: false,
+      agent: false,
+    });
+  };
+  const [newAgent, setNewAgent] = useState(false);
+  const addNewAgent = () => {
+    setNewAgent(true);
+    setListings({
+      region: false,
+      cities: false,
+      agent: false,
+    });
+  };
+  console.log(useCities.filter((e) => e.region_id == regionId));
+  console.log(useRegions);
   return (
     <main className="flex flex-col items-center gap-[61px] mt-[62px] ">
       <h1 className="text-[32px] text-[#021526] font-[600] leading-[39px]">
@@ -140,37 +219,101 @@ function Listing() {
                 <span className="text-sm text-[#021526] font-[600] leading-[17px]">
                   რეგიონი
                 </span>
-                <div className="w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93] flex items-center justify-between relative">
-                  <span className="text-sm text-[#021526] font-normal leading-[17px]">
-                    კახეთი
-                  </span>
-                  <img src="/icon-arrow-down.svg" alt="down" />
-                  <section className="absolute max-h-[150px] overflow-scroll z-50 left-0 bottom-0 transform translate-y-full">
+                <div className="relative">
+                  <div
+                    onClick={openList}
+                    className={`${
+                      listings.region ? "rounded-t-[6px]" : "rounded-[6px] "
+                    } w-[384px] h-[42px] p-[10px] border border-solid border-[#808a93] flex items-center justify-between relative`}
+                  >
+                    <span
+                      id="region"
+                      className="text-sm text-[#021526] font-normal leading-[17px]"
+                    >
+                      {regionId == 0 ? "კახეთი" : useRegions[regionId - 1].name}
+                    </span>
+                    <img src="/icon-arrow-down.svg" alt="down" />
+                  </div>
+                  <section
+                    className={`${
+                      listings.region ? "flex flex-col" : "hidden"
+                    } absolute max-h-[150px] overflow-scroll z-50 left-0 bottom-0 transform translate-y-full`}
+                  >
                     {useRegions.map((e) => {
                       return (
                         <div
                           key={e.id}
+                          onClick={handleRegion}
                           className={`${
-                            e.id == 12 ? "rounded-b-[6px] border-b" : ""
-                          }w-[384px] h-[42px] p-[10px] border-t border-l border-r border-solid border-[#808a93]`}
+                            e.id == 12 ? "rounded-b-[6px]" : ""
+                          }w-[384px] h-[42px] p-[10px] border-b border-l border-r border-solid border-[#808a93]`}
                         >
-                          <span>{e.name}</span>
+                          <span id={e.id}>{e.name}</span>
                         </div>
                       );
                     })}
                   </section>
                 </div>
               </div>
-              <div className="flex flex-col gap-[5px]">
-                <span className="text-sm text-[#021526] font-[600] leading-[17px]">
-                  ქალაქი
-                </span>
-                <div className="w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93] flex items-center justify-between relative">
-                  <span className="text-sm text-[#021526] font-normal leading-[17px]">
-                    თელავი
+              <div className="relative">
+                <div className="flex flex-col gap-[5px]">
+                  <span className="text-sm text-[#021526] font-[600] leading-[17px]">
+                    ქალაქი
                   </span>
-                  <img src="/icon-arrow-down.svg" alt="down" />
+                  <div
+                    onClick={openList}
+                    className={`${
+                      listings.cities ? "rounded-t-[6px]" : "rounded-[6px] "
+                    } w-[384px] h-[42px] p-[10px] border border-solid border-[#808a93] flex items-center justify-between relative`}
+                  >
+                    <span
+                      id="cities"
+                      className="text-sm text-[#021526] font-normal leading-[17px]"
+                    >
+                      {newList.city_id == 0
+                        ? "თელავი"
+                        : useCities[newList.city_id - 1].name}
+                    </span>
+                    <img src="/icon-arrow-down.svg" alt="down" />
+                  </div>
                 </div>
+                <section
+                  className={`${
+                    listings.cities ? "flex flex-col" : "hidden"
+                  } absolute max-h-[150px] overflow-scroll z-50 left-0 bottom-0 transform translate-y-full`}
+                >
+                  {regionId == 0
+                    ? useCities.map((e) => {
+                        return (
+                          <div
+                            key={e.id}
+                            onClick={handleCities}
+                            className={`${
+                              e.id == useCities.length ? "rounded-b-[6px] " : ""
+                            } w-[384px] h-[42px] p-[10px] border-b border-l border-r border-solid border-[#808a93]`}
+                          >
+                            <span id={e.id}>{e.name}</span>
+                          </div>
+                        );
+                      })
+                    : useCities
+                        .filter((e) => e.region_id == regionId)
+                        .map((e) => {
+                          return (
+                            <div
+                              key={e.id}
+                              onClick={handleCities}
+                              className={`${
+                                e.id == useCities.length
+                                  ? "rounded-b-[6px]"
+                                  : ""
+                              } w-[384px] h-[42px] p-[10px] border-b border-l border-r border-solid border-[#808a93]`}
+                            >
+                              <span id={e.id}>{e.name}</span>
+                            </div>
+                          );
+                        })}
+                </section>
               </div>
             </div>
           </div>
@@ -273,19 +416,73 @@ function Listing() {
             />
           </div>
         </section>
-        <section className="flex flex-col gap-4">
-          <h3 className="text-base text-[#1a1a1f] font-[600] leading-[20px]">
-            აგენტი
-          </h3>
-          <div className="flex flex-col gap-[5px]">
-            <span className="text-sm text-[#021526] font-[600] leading-[17px]">
-              აირჩიე
-            </span>
-            <div className="w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93] flex items-center justify-between">
-              <input type="text" className="outline-none w-[340px]" />
-              <img src="/icon-arrow-down.svg" alt="down" />
+        <section className="relative">
+          <div className="flex flex-col gap-4">
+            <h3 className="text-base text-[#1a1a1f] font-[600] leading-[20px]">
+              აგენტი
+            </h3>
+
+            <div className="flex flex-col gap-[5px]">
+              <span className="text-sm text-[#021526] font-[600] leading-[17px]">
+                აირჩიე
+              </span>
+              <div
+                onClick={openList}
+                className={`${
+                  useAgents[0]
+                    ? listings.agent
+                      ? "rounded-t-[6px]"
+                      : "rounded-[6px] "
+                    : "hidden"
+                } w-[384px] h-[42px] p-[10px] border border-solid border-[#808a93] flex items-center justify-between relative`}
+              >
+                <span
+                  id="agent"
+                  className="text-sm text-[#021526] font-normal leading-[17px]"
+                >
+                  {useAgents[0] ? useAgents[newList.agent_id].name : ""}{" "}
+                  {useAgents[0] ? useAgents[newList.agent_id].surname : ""}
+                </span>
+                <img src="/icon-arrow-down.svg" alt="down" />
+              </div>
             </div>
           </div>
+          <section
+            className={`${
+              listings.agent
+                ? "flex flex-col max-h-[150px]  overflow-scroll"
+                : ""
+            } absolute  z-50 left-0 bottom-0 transform translate-y-full`}
+          >
+            {useAgents.map((e) => {
+              return (
+                <div
+                  key={e.id}
+                  onClick={handleAgents}
+                  className={`${
+                    e.id == newList.agent_id ? "hidden" : ""
+                  } w-[384px] h-[42px] p-[10px] border-b border-l border-r border-solid border-[#808a93]`}
+                >
+                  <span id={e.id}>
+                    {e.name} {e.surname}
+                  </span>
+                </div>
+              );
+            })}
+            <div
+              onClick={addNewAgent}
+              className={`${
+                useAgents[0]
+                  ? "rounded-b-[6px]"
+                  : "border-t rounded-[6px] mt-[5px]"
+              } w-[384px] h-[42px] p-[10px] flex items-center gap-2 border-l border-r border-b border-solid border-[#808a93]`}
+            >
+              <img src="/plus.png" alt="plus" className="w-5 h-5" />
+              <span className="text-sm text-[#021526] font-[600] leading-[17px]">
+                დაამატე აგენტი
+              </span>
+            </div>
+          </section>
         </section>
         <div className="flex items-center gap-[15px] self-end mt-[10px]">
           <button className="w-[103px] h-[47px] rounded-[10px] flex items-center justify-center border border-solid border-[#f93b1d] text-base text-[#f93b1d] font-[600] leading-[19px]">
