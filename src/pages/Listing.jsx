@@ -126,6 +126,34 @@ function Listing() {
   };
   console.log(useCities.filter((e) => e.region_id == regionId));
   console.log(useRegions);
+
+  const [file, setFile] = useState(null);
+
+  const handleFile = (e) => {
+    e.preventDefault();
+    const selectedFile = e.target.files[0];
+    const url = URL.createObjectURL(selectedFile);
+    if (selectedFile) {
+      setFile(selectedFile.name);
+    }
+    // const formData = new FormData();
+    // formData.append("image", file);
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(`${key}:`, value);
+    // }
+    console.log(url);
+  };
+  //   http://localhost:5173/f0d4d068-6000-41ca-8b26-73fa88f4eee1
+  //   const handleUpload = async () => {
+  //     if (!imageFile) return; // Ensure a file is selected
+
+  //     const formData = new FormData();
+  //     formData.append('image', imageFile);
+  //   }
+
+  const handleClearFile = () => {
+    setFile(null);
+  };
   return (
     <main className="flex flex-col items-center gap-[61px] mt-[62px] ">
       <h1 className="text-[32px] text-[#021526] font-[600] leading-[39px]">
@@ -408,11 +436,46 @@ function Listing() {
             <span className="text-sm text-[#021526] font-[600] leading-[17px]">
               ატვირთეთ ფოტო *
             </span>
+            <div className="w-full h-[120px] flex justify-center items-center rounded-[6px] border border-dashed border-[#2d3648]">
+              {file ? (
+                <div className="relative">
+                  <img
+                    src=""
+                    alt=""
+                    className="w-[92px] h-[82px] rounded-[4px] z-0"
+                  />
+                  <div className="absolute right-[-8px] bottom-[-6px] z-40 bg-[#fff] w-6 h-6 flex items-center justify-center rounded-full border border-solid border-[#021526]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      fill="currentColor"
+                      className="bi bi-trash3"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                    </svg>
+                  </div>
+                </div>
+              ) : (
+                <label
+                  htmlFor="image-upload"
+                  className="w-full h-full flex justify-center items-center"
+                >
+                  <img
+                    src="/plus.png"
+                    alt="add"
+                    className="w-5 h-5 mt-[-10px]"
+                  />
+                </label>
+              )}
+            </div>
             <input
               id="image-upload"
               type="file"
               accept="image/*"
-              className="border border-gray-300 rounded-md p-2 text-lg shadow-md focus:border-blue-500 focus:outline-none"
+              className="hidden"
+              onChange={handleFile}
             />
           </div>
         </section>
