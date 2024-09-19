@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import NewAgent from "../components/NewAgent";
 
 function Listing() {
   const [useRegions, setRegions] = useState([]);
@@ -115,6 +116,8 @@ function Listing() {
       agent: false,
     });
   };
+
+  // open add new agent section
   const [newAgent, setNewAgent] = useState(false);
   const addNewAgent = () => {
     setNewAgent(true);
@@ -134,7 +137,7 @@ function Listing() {
     const selectedFile = e.target.files[0];
     const url = URL.createObjectURL(selectedFile);
     if (selectedFile) {
-      setFile(selectedFile.name);
+      setFile(selectedFile);
     }
     // const formData = new FormData();
     // formData.append("image", file);
@@ -143,6 +146,7 @@ function Listing() {
     // }
     console.log(url);
   };
+  console.log(file);
   //   http://localhost:5173/f0d4d068-6000-41ca-8b26-73fa88f4eee1
   //   const handleUpload = async () => {
   //     if (!imageFile) return; // Ensure a file is selected
@@ -154,12 +158,13 @@ function Listing() {
   const handleClearFile = () => {
     setFile(null);
   };
+
   return (
     <main className="flex flex-col items-center gap-[61px] mt-[62px] ">
       <h1 className="text-[32px] text-[#021526] font-[600] leading-[39px]">
         ლისტინგის დამატება
       </h1>
-      <form className="w-[790px] flex flex-col gap-20 mb-20">
+      <form className="w-[790px] flex flex-col gap-20 mb-20 z-0">
         <div className="flex flex-col gap-2">
           <h3 className="text-base text-[#1a1a1f] font-[600] leading-[20px]">
             გარიგების ტიპი
@@ -216,7 +221,7 @@ function Listing() {
                   className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
                 />
                 <div>
-                  <img src="" alt="" />
+                  <img src="/check-lg.svg" alt="" />
                   <span className="text-sm text-[#021526] font-[500] leading-[17px]">
                     მინიმუმ ორი სიმბოლო
                   </span>
@@ -235,7 +240,7 @@ function Listing() {
                   className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
                 />
                 <div>
-                  <img src="" alt="" />
+                  <img src="/check-lg.svg" alt="" />
                   <span className="text-sm text-[#021526] font-[500] leading-[17px]">
                     მხოლოდ რიცხვები
                   </span>
@@ -265,7 +270,7 @@ function Listing() {
                   <section
                     className={`${
                       listings.region ? "flex flex-col" : "hidden"
-                    } absolute max-h-[150px] overflow-scroll z-50 left-0 bottom-0 transform translate-y-full`}
+                    } absolute max-h-[150px] overflow-scroll bg-[#fff] z-50 left-0 bottom-0 transform translate-y-full`}
                   >
                     {useRegions.map((e) => {
                       return (
@@ -308,7 +313,7 @@ function Listing() {
                 <section
                   className={`${
                     listings.cities ? "flex flex-col" : "hidden"
-                  } absolute max-h-[150px] overflow-scroll z-50 left-0 bottom-0 transform translate-y-full`}
+                  } absolute max-h-[150px] overflow-scroll bg-[#fff] z-50 left-0 bottom-0 transform translate-y-full`}
                 >
                   {regionId == 0
                     ? useCities.map((e) => {
@@ -365,7 +370,7 @@ function Listing() {
                   className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
                 />
                 <div>
-                  <img src="" alt="" />
+                  <img src="/check-lg.svg" alt="" />
                   <span className="text-sm text-[#021526] font-[500] leading-[17px]">
                     მხოლოდ რიცხვები
                   </span>
@@ -384,7 +389,7 @@ function Listing() {
                   className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
                 />
                 <div>
-                  <img src="" alt="" />
+                  <img src="/check-lg.svg" alt="" />
                   <span className="text-sm text-[#021526] font-[500] leading-[17px]">
                     მხოლოდ რიცხვები
                   </span>
@@ -404,7 +409,7 @@ function Listing() {
                 className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
               />
               <div>
-                <img src="" alt="" />
+                <img src="/check-lg.svg" alt="" />
                 <span className="text-sm text-[#021526] font-[500] leading-[17px]">
                   მხოლოდ რიცხვები
                 </span>
@@ -426,7 +431,7 @@ function Listing() {
               className="outline-none resize-none w-[788px] h-[135px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
             />
             <div>
-              <img src="" alt="" />
+              <img src="/check-lg.svg" alt="" />
               <span className="text-sm text-[#021526] font-[500] leading-[17px]">
                 მინიმუმ ხუთი სიტყვა
               </span>
@@ -556,6 +561,7 @@ function Listing() {
           </button>
         </div>
       </form>
+      {newAgent ? <NewAgent /> : ""}
     </main>
   );
 }
