@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { v4 as uuidv4 } from "uuid";
+
 const schema = yup.object({
   name: yup.string().required("სავალდებულო").min(2, " მინიმუმ 2 სიმბოლო"),
-  lastName: yup.string().required("სავალდებულო").min(2, " მინიმუმ 2 სიმბოლო"),
+  surname: yup.string().required("სავალდებულო").min(2, " მინიმუმ 2 სიმბოლო"),
   email: yup
     .string()
     .required("სავალდებულო")
@@ -26,15 +28,8 @@ const schema = yup.object({
 //   return value[0].size <= 1048576; // 1 MB in bytes
 // }),
 function NewAgent() {
-  const [newAgent, setNewAgent] = useState({
-    id: 0,
-    name: "",
-    email: "",
-    phone: "",
-    avatar: "",
-  });
+  const isNew = useRef(true);
 
-  // validation
   const {
     register,
     handleSubmit,
@@ -42,7 +37,27 @@ function NewAgent() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (newAgent) => console.log(newAgent);
+  const onSubmit = (data) => {
+    let newAgent = {
+      id: uuidv4(),
+      name: data.name,
+      surname: data.surname,
+      email: data.email,
+      phone: data.phone,
+      avatar: data.avatar,
+    };
+    // setNewAgent({
+    //   ...newAgent,
+    //   id: uuidv4(),
+    //   name: data.name,
+    //   surname: data.surname,
+    //   email: data.email,
+    //   phone: data.phone,
+    //   avatar: data.avatar,
+    // });
+    console.log(data);
+    console.log(newAgent);
+  };
 
   const [fileA, setFileA] = useState(null);
   const [fileAUrl, setFileAUrl] = useState("");
@@ -88,20 +103,36 @@ function NewAgent() {
                     aria-invalid={errors.firstName ? "true" : "false"}
                     type="text"
                     id="name"
-                    className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
+                    className={`${
+                      errors.name ? "border-[#F93B1D]" : "border-[#808a93]"
+                    } outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid`}
                   />
                   <div className="flex gap-[7px]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      fill="currentColor"
+                      fill={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "#021526"
+                          : errors.name
+                          ? "#F93B1D"
+                          : "#45A849"
+                      }`}
                       className="bi bi-check-lg"
                       viewBox="0 0 16 16"
                     >
                       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
                     </svg>
-                    <p className="text-sm text-[#021526] font-[500] leading-[17px]">
+                    <p
+                      className={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "text-[#021526]"
+                          : errors.name
+                          ? "text-[#F93B1D]"
+                          : "text-[#45A849]"
+                      } text-sm font-[500] leading-[17px]`}
+                    >
                       {!errors.name
                         ? "მინიმუმ ორი სიმბოლო"
                         : `${errors.name.message}`}
@@ -110,32 +141,48 @@ function NewAgent() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label
-                    htmlFor="lastName"
+                    htmlFor="surname"
                     className="text-sm text-[#021526] font-[600] leading-[17px]"
                   >
                     გვარი
                   </label>
                   <input
-                    {...register("lastName")}
+                    {...register("surname")}
                     type="text"
-                    id="lastName"
-                    className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
+                    id="surname"
+                    className={`${
+                      errors.surname ? "border-[#F93B1D]" : "border-[#808a93]"
+                    } outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid`}
                   />
                   <div className="flex gap-[7px]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      fill="currentColor"
+                      fill={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "#021526"
+                          : errors.surname
+                          ? "#F93B1D"
+                          : "#45A849"
+                      }`}
                       className="bi bi-check-lg"
                       viewBox="0 0 16 16"
                     >
                       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
                     </svg>
-                    <p className="text-sm text-[#021526] font-[500] leading-[17px]">
-                      {!errors.lastName
+                    <p
+                      className={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "text-[#021526]"
+                          : errors.surname
+                          ? "text-[#F93B1D]"
+                          : "text-[#45A849]"
+                      } text-sm font-[500] leading-[17px]`}
+                    >
+                      {!errors.surname
                         ? "მინიმუმ ორი სიმბოლო"
-                        : `${errors.lastName.message}`}
+                        : `${errors.surname.message}`}
                     </p>
                   </div>
                 </div>
@@ -152,20 +199,36 @@ function NewAgent() {
                     {...register("email")}
                     type="email"
                     id="email"
-                    className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
+                    className={`${
+                      errors.email ? "border-[#F93B1D]" : "border-[#808a93]"
+                    } outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid`}
                   />
                   <div className="flex gap-[7px]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      fill="currentColor"
+                      fill={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "#021526"
+                          : errors.email
+                          ? "#F93B1D"
+                          : "#45A849"
+                      }`}
                       className="bi bi-check-lg"
                       viewBox="0 0 16 16"
                     >
                       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
                     </svg>
-                    <p className="text-sm text-[#021526] font-[500] leading-[17px]">
+                    <p
+                      className={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "text-[#021526]"
+                          : errors.email
+                          ? "text-[#F93B1D]"
+                          : "text-[#45A849]"
+                      } text-sm font-[500] leading-[17px]`}
+                    >
                       {!errors.email
                         ? "გამოიყენეთ @redberry.ge ფოსტა"
                         : `${errors.email.message}`}
@@ -174,7 +237,7 @@ function NewAgent() {
                 </div>
                 <div className="flex flex-col gap-1">
                   <label
-                    htmlFor="number"
+                    htmlFor="phone"
                     className="text-sm text-[#021526] font-[600] leading-[17px]"
                   >
                     ტელეფონის ნომერი
@@ -182,21 +245,37 @@ function NewAgent() {
                   <input
                     {...register("phone")}
                     type="text"
-                    id="number"
-                    className="outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid border-[#808a93]"
+                    id="phone"
+                    className={`${
+                      errors.phone ? "border-[#F93B1D]" : "border-[#808a93]"
+                    } outline-none w-[384px] h-[42px] p-[10px] rounded-[6px] border border-solid`}
                   />
                   <div className="flex gap-[7px]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
-                      fill="currentColor"
+                      fill={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "#021526"
+                          : errors.phone
+                          ? "#F93B1D"
+                          : "#45A849"
+                      }`}
                       className="bi bi-check-lg"
                       viewBox="0 0 16 16"
                     >
                       <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z" />
                     </svg>
-                    <p className="text-sm text-[#021526] font-[500] leading-[17px]">
+                    <p
+                      className={`${
+                        !(Object.keys(errors).length >= 1)
+                          ? "text-[#021526]"
+                          : errors.phone
+                          ? "text-[#F93B1D]"
+                          : "text-[#45A849]"
+                      } text-sm font-[500] leading-[17px]`}
+                    >
                       {!errors.phone
                         ? "მხოლოდ რიცხვები"
                         : `${errors.phone.message}`}
@@ -244,12 +323,6 @@ function NewAgent() {
                       />
                     </label>
                   )}
-                  <p className="text-sm text-[#021526] font-[500] leading-[17px]">
-                    მხოლოდ რიცხვები
-                    {errors.avatar && (
-                      <span role="alert">{errors.avatar.message}</span>
-                    )}
-                  </p>
                 </div>
                 <input
                   {...register("avatar")}
